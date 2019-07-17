@@ -1,7 +1,6 @@
 package com.hpc.frame.network;
 
 import com.hpc.frame.BuildConfig;
-import com.hpc.frame.network.interceptor.CacheInterceptor;
 import com.hpc.frame.network.interceptor.NetWorkInterceptor;
 import com.hpc.frame.network.interceptor.TokenInterceptor;
 
@@ -49,7 +48,7 @@ public class NetWorkManager {
         builder.connectTimeout(9, TimeUnit.SECONDS);
         builder.addInterceptor(new NetWorkInterceptor());
         builder.addInterceptor(new TokenInterceptor());
-        builder.addInterceptor(new CacheInterceptor());
+//        builder.addInterceptor(new CacheInterceptor());
 
         /*debugger模式打印日志*/
         if (BuildConfig.DEBUG) {

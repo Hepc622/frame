@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.hpc.frame.network.NetWorkManager;
-import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.bugly.Bugly;
 
 /**
  * 基础application 用户初始化工具
@@ -20,12 +20,11 @@ public class BaseApplication extends Application {
         /*升级检测*/
         initUpdate();
     }
-
     /**
      * 初始化升级更新
      */
     private void initUpdate() {
-        CrashReport.initCrashReport(context, "d48bdb0331", false);
+        Bugly.init(context, "d48bdb0331", false);
     }
 
     /**
