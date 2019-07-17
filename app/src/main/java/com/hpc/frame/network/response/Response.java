@@ -6,15 +6,15 @@ package com.hpc.frame.network.response;
  * @date : 2019/7/12 14:31
  */
 public class Response<T> {
-    private int code;
+    private String code;
     private T data;
     private String msg;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

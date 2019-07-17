@@ -1,6 +1,7 @@
 package com.hpc.frame.network.interceptor;
 
 import android.app.Activity;
+import android.os.Looper;
 import android.widget.Toast;
 
 import com.hpc.frame.BaseApplication;
@@ -25,14 +26,11 @@ public class TokenInterceptor implements Interceptor {
         Request request = chain.request();
         /*判断是否有token，没有token提示去登录*/
         String token = CacheUtils.getCacheToken();
-        if (token != null) {
-            /*添加token*/
-            Request.Builder builder = request.newBuilder().addHeader("token", token);
-            request = builder.build();
-            return chain.proceed(request);
-        } else {
-            ((Activity) context).runOnUiThread(() -> Toast.makeText(context, "无效token,请重新登录", Toast.LENGTH_SHORT).show());
-            return null;
+        if (token == null) {
+            token = "";
         }
+        Request.Builder builder = request.newBuilder().addHeader("token", token);
+        request = builder.build();
+        return chain.proceed(request);
     }
 }

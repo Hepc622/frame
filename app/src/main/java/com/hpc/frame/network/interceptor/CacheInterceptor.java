@@ -19,7 +19,7 @@ import okhttp3.Response;
  * @author : HPC
  * @date : 2019/7/12 16:30
  */
-public class CaheInterceptor implements Interceptor {
+public class CacheInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -36,7 +36,7 @@ public class CaheInterceptor implements Interceptor {
                     .header("Cache-Control", "public, max-age=" + maxAge)
                     .build();
         } else {
-            ((Activity) BaseApplication.context).runOnUiThread(() -> Toast.makeText(BaseApplication.context, "当前无网络! 为你智能加载缓存", Toast.LENGTH_SHORT).show());
+            Toast.makeText(BaseApplication.context, "当前无网络! 为你智能加载缓存", Toast.LENGTH_SHORT).show();
             Log.e("Tamic", " no network load cahe");
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)

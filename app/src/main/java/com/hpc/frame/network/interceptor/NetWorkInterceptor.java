@@ -26,7 +26,7 @@ public class NetWorkInterceptor implements Interceptor {
         if (NetworkUtil.isNetworkAvailable()) {
             return chain.proceed(request);
         } else {
-            ((Activity) context).runOnUiThread(() -> Toast.makeText(context, "当前无网络! 请检查网咯", Toast.LENGTH_SHORT).show());
+            Toast.makeText(context, "当前无网络! 请检查网咯", Toast.LENGTH_SHORT).show();
             return null;
         }
     }

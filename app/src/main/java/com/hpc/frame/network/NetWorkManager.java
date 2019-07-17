@@ -1,10 +1,9 @@
 package com.hpc.frame.network;
 
 import com.hpc.frame.BuildConfig;
-import com.hpc.frame.network.interceptor.CaheInterceptor;
+import com.hpc.frame.network.interceptor.CacheInterceptor;
 import com.hpc.frame.network.interceptor.NetWorkInterceptor;
 import com.hpc.frame.network.interceptor.TokenInterceptor;
-import com.hpc.frame.network.request.IBaseRequest;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +19,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @date : 2019/7/12 10:52
  */
 public class NetWorkManager {
+
+    /**
+     * host链接
+     */
+    private final String HOST = "http://192.168.0.4";
 
     private static NetWorkManager mInstance;
     private static Retrofit retrofit;
@@ -45,7 +49,7 @@ public class NetWorkManager {
         builder.connectTimeout(9, TimeUnit.SECONDS);
         builder.addInterceptor(new NetWorkInterceptor());
         builder.addInterceptor(new TokenInterceptor());
-        builder.addInterceptor(new CaheInterceptor());
+        builder.addInterceptor(new CacheInterceptor());
 
         /*debugger模式打印日志*/
         if (BuildConfig.DEBUG) {
@@ -59,7 +63,7 @@ public class NetWorkManager {
         // 初始化Retrofit
         retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(IBaseRequest.HOST)
+                .baseUrl(HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
