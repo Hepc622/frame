@@ -14,10 +14,24 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        /*初始化网络请求*/
-        NetWorkManager.getInstance().init();
         context = getApplicationContext();
+        /*初始化网络请求*/
+        initNetwork();
         /*升级检测*/
+        initUpdate();
+    }
+
+    /**
+     * 初始化升级更新
+     */
+    private void initUpdate() {
         CrashReport.initCrashReport(context, "d48bdb0331", false);
+    }
+
+    /**
+     * 初始化网络
+     */
+    private void initNetwork() {
+        NetWorkManager.getInstance().init();
     }
 }
